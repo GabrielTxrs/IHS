@@ -7,6 +7,7 @@ Turma 03
 
 
 Gabriel Teixeira Silveira<br>
+Curso: Ciência da Computação<br>
 Matrícula: 202100011987
 
 
@@ -53,7 +54,7 @@ Para isso, segui o passo a passo demonstrado abaixo.
 
 <br>
 
-<img src="IHS-atividade-2.drawio.png" width="900"/>
+<img src="IHS-atividade-3.drawio.png" width="900"/>
 
 <div style="text-align: justify">
 
@@ -92,6 +93,7 @@ Caso a tradução não esteja no **TLB**, a PTE é consultada e o **TLB** armaze
 <li>  A chance de miss está entre 0.01% a 1%.</li>
 </ul>
 <img src=TLB.png width="900"/>
+Fonte: PATTERSON David, HENNESSY John. Computer Organization and Design, Fifth Edition: The Hardware/Software Interface. Morgan Kaufmann Publishers Inc.340 Pine Street, Sixth FloorSan Francisco, CA, Estados Unidos. Página 438.
 
 ## Políticas de substituição e de proteção no sistema operacional
 
@@ -120,6 +122,7 @@ Para permitir que o sistema operacional implemente proteção no sistema de mem�
 4. ***Tabela de Páginas por Segmento***: Cada segmento tem sua própria tabela de páginas que mapeia páginas virtuais para quadros de memória física.
 
 <img src=segmentacao-paginada.png width="900"/>
+Fonte: https://www.youtube.com/watch?v=8S-WhoQ3psI&t=354s
 
 #### Exemplo de funcionamento:
 Na imagem acima, à direita, temos os segmentos 0, 1 e 2. Esses números são equivalentes aos índices da ***tabela de segmento***. <br>
