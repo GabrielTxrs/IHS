@@ -8,8 +8,9 @@ int fib(int n) {
 }
 
 int main() {
-    int n = 5;
-    int result = fib(n);
-    printf("%d", result);
+    int n;
+    printf("Digite o numero de fibonacci\n");
+    scanf("%d", &n);
+    printf("O resultado e: %d", fib(n));
     return 0;
 }
