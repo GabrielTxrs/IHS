@@ -1,19 +1,25 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
-void trocar(int32_t* i, int32_t* j) {
-    int32_t k = *i;
-    *i = *j; *j = k;
-}
+#define trocar(i, j)\
+    __asm__(\
+        "mov (%0), %%eax;"\
+        "mov (%1), %%ecx;"\
+        "mov %%eax, (%1);"\
+        "mov %%ecx, (%0);"\
+        :\
+        : "r"(i), "r"(j)\
+        : "eax", "ecx", "memory"\
+    )
+
 void heapify(int32_t* V, uint32_t i, uint32_t n) {
-    uint32_t P = i, E = 2 * i + 1, D = 2 * i + 2;
-    for (uint32_t j = E; j < n && j <= D; j++) {
-            if(V[j] > V[P]) P = j;
-        if(P != i) {
-            trocar(&V[i], &V[P]);
-            heapify(V, P, n);
-        }         
-    }
+    while(i < n) {
+        uint32_t P = i, E = (P << 1) + 1, D = E + 1;
+        if(E < n && V[E] > V[P]) P = E;
+        if(D < n && V[D] > V[P]) P = D;
+        if(P == i) break; 
+        trocar(&V[P], &V[i]);
+    }  
 }
 void contruir_heap(int32_t* V, uint32_t n) {
     for (int32_t i = n / 2; i >= 0; i--) 
@@ -28,7 +34,7 @@ void ordenar(int32_t* V, uint32_t n) {
 }
 
 int main() {
-    const uint32_t n = 100000;
+    const uint32_t n = 10000000;
     int32_t* V = (int32_t*) malloc(n * sizeof(int32_t));
     for (uint32_t i = 0; i < n; i++) 
         V[i] = rand() * rand();
