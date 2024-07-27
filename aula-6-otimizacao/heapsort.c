@@ -26,7 +26,6 @@ void ordenar(int32_t* V, uint32_t n) {
         heapify(V, 0, i);
     }
 }
-
 int main() {
     const uint32_t n = 100000;
     int32_t* V = (int32_t*) malloc(n * sizeof(int32_t));

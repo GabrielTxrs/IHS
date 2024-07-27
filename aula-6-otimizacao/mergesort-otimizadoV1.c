@@ -1,30 +1,22 @@
 #include <stdio.h> 
 #include <stdlib.h> 
 #include <stdint.h>
-#define IreceiveJ(i, j)\
-    __asm__(\
-        "mov (%1), %%eax;"\
-        "mov %%eax, (%0);"\
-        :\
-        : "r"(i), "r"(j)\
-        : "eax", "memory"\
-    )
 
 void merge(int32_t* arr, int32_t low, int32_t mid, uint32_t high) { 
 	uint32_t i = low, j = mid + 1, k = 0; 
 	uint32_t* temp = (uint32_t*)calloc(high - low + 1, sizeof(uint32_t)); 
 	while ((i <= mid) && (j <= high)) 
 		if (arr[i] < arr[j]) 
-			IreceiveJ(&temp[k++], &arr[i++]); // IreceiveJ(&arr[i++], &temp[k++]);
+			temp[k++] = arr[i++]; 
 		else
-			IreceiveJ(&temp[k++], &arr[j++]); // IreceiveJ(&arr[i++], &temp[j++]);
+			temp[k++] = arr[j++]; 
 	while (j <= high) 
-		IreceiveJ(&temp[k++], &arr[j++]); // IreceiveJ(&arr[i++], &temp[k++]);
+		temp[k++] = arr[j++];
 	while (i <= mid) 
-		IreceiveJ(&temp[k++], &arr[i++]); // IreceiveJ(&arr[i++], &temp[k++]);
+		temp[k++] = arr[i++]; 
 
 	for (i = low, k = 0; i <= high; i++, k++) 
-		IreceiveJ(&arr[i], &temp[k]); // IreceiveJ(&temp[k], &arr[i]);
+		arr[i] = temp[k];
 	free(temp); 
 } 
 void mergesort(int32_t* arr, int32_t low, int32_t high) { 
