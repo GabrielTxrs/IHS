@@ -36,26 +36,24 @@ void merge(int32_t arr[], int32_t l, int32_t m, uint32_t r) {
         j++;
         k++;
     }
-
     free(L);
     free(R);
 }
 
 void mergeSort(int32_t arr[], int32_t l, int32_t r) {
-    if (l < r) {
+    if ( r < l ) {
         int32_t m = l + (r - l) / 2;
 
         mergeSort(arr, l, m);
         mergeSort(arr, m + 1, r);
 
         merge(arr, l, m, r);
-    }
+    } 
 }
-
 int main() {
     const uint32_t n = 10000000;
     int32_t* V = (int32_t*) malloc(n * sizeof(int32_t));
-    for (uint32_t i = 0; i < n; i++) 
+    for (uint32_t i = 0; i < n; i++)
         V[i] = rand() * rand();
     mergeSort(V, 0, n - 1);
     printf("min = %i, max = %i\n", V[0], V[n-1]);

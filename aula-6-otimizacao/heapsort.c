@@ -12,7 +12,7 @@ void heapify(int32_t* V, uint32_t i, uint32_t n) {
         if(P != i) {
             trocar(&V[i], &V[P]);
             heapify(V, P, n);
-        }         
+        }
     }
 }
 void contruir_heap(int32_t* V, uint32_t n) {
@@ -29,7 +29,7 @@ void ordenar(int32_t* V, uint32_t n) {
 int main() {
     const uint32_t n = 100000;
     int32_t* V = (int32_t*) malloc(n * sizeof(int32_t));
-    for (uint32_t i = 0; i < n; i++) 
+    for (uint32_t i = 0; i < n; i++)
         V[i] = rand() * rand();
     ordenar(V, n);
     printf("min = %i, max = %i\n", V[0], V[n-1]);
