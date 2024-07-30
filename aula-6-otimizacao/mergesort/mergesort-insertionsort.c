@@ -1,68 +1,50 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
-#include <string.h>
-#define trocar(i, j)\
-    __asm__(\
-        "mov (%0), %%eax;"\
-        "mov (%1), %%ecx;"\
-        "mov %%eax, (%1);"\
-        "mov %%ecx, (%0);"\
-        :\
-        : "r"(i), "r"(j)\
-        : "eax", "ecx", "memory"\
-    )
-void insertionSort(int32_t E[], int32_t first, int32_t last) {
-	if ((last - first) < 1) { return; }
-	for (int32_t i = (first + 1); i <= last; i++) {
-		for (int32_t j = i; j > first; j--) {
-			if (E[j] < E[j - 1]) {
-                 trocar(&E[j], &E[j - 1]); 
-            }
-            break;
-		}
-	}
+#include <math.h>
+
+void merge(int32_t a[], int32_t l, int32_t m, int32_t r) { 	
+    int32_t i, j, k;
+    for (i = m + 1; i > l; i--) aux[i-1] = a[i-1];
+    for (j = m; j < r; j++) aux[r+m-j] = a[j+1];
+    for (k = l; k <= r; k++)
+        if (aux[j] <  aux[i])
+            a[k] = aux[j--]; else a[k] = aux[i++];
 }
 
-void merge(int32_t E[], int32_t first, int32_t mid, int32_t last) {
-	if ((last - first) < 1) { return; }
-	int32_t *left, *right;
-	left = malloc((mid - first + 1) * sizeof(int32_t)); 
-    memcpy(&left[0], &E[first], (mid - first + 1) * sizeof(int32_t));
-	right = malloc((last - mid) * sizeof(int32_t)); 
-    memcpy(&right[0], &E[mid + 1], (last - mid) * sizeof(int32_t));
-
-	int32_t compare, index = first, indexLeft = 0, indexRight = 0;
-	while (indexLeft < (mid - first + 1) && indexRight < (last - mid)) {
-		compare = right[indexRight] - left[indexLeft];
-		if (compare > 0) { E[index++] = left[indexLeft++]; } 
-		else if (compare < 0) { E[index++] = right[indexRight++]; } 
-		else { E[index++] = left[indexLeft++]; E[index++] = right[indexRight++]; } 
-	}
-	while (indexLeft < (mid - first + 1)) { E[index++] = left[indexLeft++]; }
-	while (indexRight < (last - mid)) { E[index++] = right[indexRight++]; }
-	free(left); 
-    free(right);
-}
-void mersertionSort(int32_t E[], int32_t first, int32_t last, int32_t S) {
-	if (last - first > S) {
-		int32_t mid = (first + last) / 2;
-		mersertionSort(E, first, mid, S);
-		mersertionSort(E, mid + 1, last, S);
-		merge(E, first, mid, last);
-	}
-	else {
-		insertionSort(E, first, last);
-	}
+mergeAB(int32_t c[], int32_t a[], int32_t N, int32_t b[], int32_t M ) {
+    int32_t i, j, k;
+    for (i = 0, j = 0, k = 0; k < N + M; k++) {
+        if (i == N) { c[k] = b[j++]; continue; }
+        if (j == M) { c[k] = a[i++]; continue; }
+        c[k] = (less(a[i], b[j])) ? a[i++] : b[j++];
+    }
 }
 
-int main() {
-    const uint32_t n = 10000000;
-    int32_t* V = (int32_t*) malloc(n * sizeof(int32_t));
-    for (uint32_t i = 0; i < n; i++)
-        V[i] = rand() * rand();
-    mersertionSort(V, 0, n - 1, 5);
-    printf("min = %i, max = %i\n", V[0], V[n-1]);
-    free(V);
-    return 0;
+void mergeSort(int32_t a[], int32_t l, int32_t r) { 
+    int32_t m = (r + l)/2;
+    if (r <= 1) return;
+    mergeSort(a, l, m);
+    mergeSort(a, m+1, r);
+    merge(a, l, m, r);
+} 
+
+void mergesortABr(int32_t a[], int32_t b[], int l, int r)
+{
+    int m = (1 + r) / 2;
+    if (r - 1 <= 10)
+    {
+        insertion(a, 1, r);
+        return;
+    }
+    mergesortABr(b, a, 1, m);
+    mergesortABr(b, a, m + 1, r);
+    mergeAB(a + 1, b + 1, m - 1 + 1, b + m + l, r - m);
+}
+
+void mergesortAB(int32_t a[], int32_t l, int32_t r)
+{
+    for (int32_t i = 1; i <= r; i++)
+        aux[i] = a[i];
+    mergesortABr(a, aux, l, r);
 }

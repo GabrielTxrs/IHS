@@ -40,8 +40,8 @@ void merge(int32_t arr[], int32_t l, int32_t m, uint32_t r) {
     free(R);
 }
 
-void mergeSort(int32_t arr[], int32_t l, int32_t r) {
-    if ( r < l ) {
+void mergeSort(int32_t *arr, int32_t l, int32_t r) {
+    if ( l < r ) {
         int32_t m = l + (r - l) / 2;
 
         mergeSort(arr, l, m);

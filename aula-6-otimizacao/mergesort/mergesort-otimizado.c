@@ -58,7 +58,7 @@ void insertionSort(int32_t *E, int32_t first, int32_t last) {
 	}
 }
 void mergeSort(int32_t *arr, int32_t l, int32_t r) {
-    if ( r - l > 7) {
+    if ( r - l > 20) {
         int32_t m = l + (r - l) / 2;
 
         mergeSort(arr, l, m);

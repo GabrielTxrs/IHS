@@ -1,35 +1,10 @@
-gabriel-ubuntu-wsl-2@DESKTOP-V76KM6R:/mnt/c/Users/User/Programacao/IHS/aula-6-otimizacao/mergesort$ gcc -Wall -O1 mergesort.c -o mergesortO1.elf
-gabriel-ubuntu-wsl-2@DESKTOP-V76KM6R:/mnt/c/Users/User/Programacao/IHS/aula-6-otimizacao/mergesort$ hyperfine --warmup 3 './mergesortO1.elf'                                                                
-Benchmark 1: ./mergesortO1.elf
-  Time (mean ± σ):     204.2 ms ±   1.0 ms    [User: 196.7 ms, System: 5.6 ms]
-  Range (min … max):   202.3 ms … 205.6 ms    14 runs
+2.397 ± 0.013 0
+1.433 ± 0.011 1
+1.411 ± 0.013 2 
+1.399 ± 0.015 3
+1.388 ± 0.025 fast
+1.509 ± 0.020 s
+1.495 ± 0.014 g
 
-gabriel-ubuntu-wsl-2@DESKTOP-V76KM6R:/mnt/c/Users/User/Programacao/IHS/aula-6-otimizacao/mergesort$ gcc -Wall -O2 mergesort.c -o mergesortO2.elf
-gabriel-ubuntu-wsl-2@DESKTOP-V76KM6R:/mnt/c/Users/User/Programacao/IHS/aula-6-otimizacao/mergesort$ hyperfine --warmup 3 './mergesortO2.elf'
-Benchmark 1: ./mergesortO2.elf
-  Time (mean ± σ):     205.8 ms ±   2.1 ms    [User: 198.1 ms, System: 5.9 ms]
-  Range (min … max):   202.6 ms … 209.2 ms    14 runs
-
-gabriel-ubuntu-wsl-2@DESKTOP-V76KM6R:/mnt/c/Users/User/Programacao/IHS/aula-6-otimizacao/mergesort$ gcc -Wall -O3 mergesort.c -o mergesortO3.elf
-gabriel-ubuntu-wsl-2@DESKTOP-V76KM6R:/mnt/c/Users/User/Programacao/IHS/aula-6-otimizacao/mergesort$ hyperfine --warmup 3 './mergesortO3.elf'
-Benchmark 1: ./mergesortO3.elf
-  Time (mean ± σ):     207.9 ms ±   2.4 ms    [User: 199.9 ms, System: 6.1 ms]
-  Range (min … max):   204.9 ms … 214.0 ms    13 runs
-
-gabriel-ubuntu-wsl-2@DESKTOP-V76KM6R:/mnt/c/Users/User/Programacao/IHS/aula-6-otimizacao/mergesort$ gcc -Wall -Ofast mergesort.c -o mergesortOfast.elf
-gabriel-ubuntu-wsl-2@DESKTOP-V76KM6R:/mnt/c/Users/User/Programacao/IHS/aula-6-otimizacao/mergesort$ hyperfine --warmup 3 './mergesortOfast.elf'
-Benchmark 1: ./mergesortOfast.elf
-  Time (mean ± σ):     207.4 ms ±   3.3 ms    [User: 200.4 ms, System: 5.0 ms]
-  Range (min … max):   205.1 ms … 217.6 ms    14 runs
-
-gabriel-ubuntu-wsl-2@DESKTOP-V76KM6R:/mnt/c/Users/User/Programacao/IHS/aula-6-otimizacao/mergesort$ gcc -Wall -Os mergesort.c -o mergesortOs.elf
-gabriel-ubuntu-wsl-2@DESKTOP-V76KM6R:/mnt/c/Users/User/Programacao/IHS/aula-6-otimizacao/mergesort$ hyperfine --warmup 3 './mergesortOs.elf'
-Benchmark 1: ./mergesortOs.elf
-  Time (mean ± σ):     205.4 ms ±   2.1 ms    [User: 197.9 ms, System: 5.7 ms]
-  Range (min … max):   200.4 ms … 208.4 ms    14 runs
-
-gabriel-ubuntu-wsl-2@DESKTOP-V76KM6R:/mnt/c/Users/User/Programacao/IHS/aula-6-otimizacao/mergesort$ gcc -Wall -Og mergesort.c -o mergesortOg.elf
-gabriel-ubuntu-wsl-2@DESKTOP-V76KM6R:/mnt/c/Users/User/Programacao/IHS/aula-6-otimizacao/mergesort$ hyperfine --warmup 3 './mergesortOg.elf'
-Benchmark 1: ./mergesortOg.elf
-  Time (mean ± σ):     205.3 ms ±   1.9 ms    [User: 197.0 ms, System: 6.4 ms]
-  Range (min … max):   201.8 ms … 209.3 ms    14 runs
+2.045 ± 0.017    0
+1.186 s ±  0.014 1
