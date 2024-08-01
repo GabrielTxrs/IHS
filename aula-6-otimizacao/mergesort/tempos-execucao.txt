@@ -13,3 +13,58 @@
 1.158 ± 0.011
 1.225 ± 0.007
 1.211 ± 0.007
+
+$ gprof -l mergesort.elf
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total
+ time   seconds   seconds    calls  ps/call  ps/call  name
+ 20.83      0.40     0.40                             merge (mergesort.c:20 @ 136d)
+ 18.23      0.75     0.35                             merge (mergesort.c:21 @ 1399)
+ 15.10      1.04     0.29                             merge (mergesort.c:24 @ 13c7)
+ 14.06      1.31     0.27                             merge (mergesort.c:19 @ 13f7)
+  8.33      1.47     0.16                             merge (mergesort.c:14 @ 12d2)
+  4.69      1.56     0.09                             merge (mergesort.c:13 @ 1301)
+  4.17      1.64     0.08                             merge (mergesort.c:16 @ 1316)
+  3.65      1.71     0.07                             merge (mergesort.c:15 @ 1348)
+  2.60      1.76     0.05                             merge (mergesort.c:25 @ 13ef)
+  1.56      1.79     0.03                             merge (mergesort.c:22 @ 13c1)
+  1.04      1.81     0.02                             merge (mergesort.c:11 @ 12b4)
+  1.04      1.83     0.02                             merge (mergesort.c:40 @ 148b)
+  1.04      1.85     0.02                             mergeSort (mergesort.c:50 @ 1502)
+  0.78      1.86     0.01 19999999   750.00   750.00  mergeSort (mergesort.c:43 @ 149a)
+  0.52      1.88     0.01                             main (mergesort.c:57 @ 1550)
+  0.52      1.89     0.01                             merge (mergesort.c:29 @ 143d)
+  0.52      1.90     0.01                             mergeSort (mergesort.c:45 @ 14be)
+  0.26      1.90     0.01                             merge (mergesort.c:34 @ 1477)
+  0.26      1.91     0.01                             merge (mergesort.c:39 @ 147f)
+  0.26      1.91     0.01                             merge (mergesort.c:41 @ 1497)
+  0.26      1.92     0.01                             mergeSort (mergesort.c:47 @ 14d7)
+  0.26      1.92     0.01                             mergeSort (mergesort.c:48 @ 14eb)
+  0.00      1.92     0.00  9999999     0.00     0.00  merge (mergesort.c:5 @ 1269)
+
+$ gprof -l mergesort-otimizado.elf
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total
+ time   seconds   seconds    calls  ns/call  ns/call  name    
+ 17.32      0.31     0.31                             merge (mergesort-otimizado.c:30 @ 1399)        
+ 16.20      0.60     0.29                             merge (mergesort-otimizado.c:29 @ 136d)        
+ 15.92      0.89     0.28                             merge (mergesort-otimizado.c:33 @ 13c7)        
+ 13.41      1.12     0.24                             merge (mergesort-otimizado.c:23 @ 12d2)        
+ 11.73      1.33     0.21                             insertionSort (mergesort-otimizado.c:55 @ 14d7)
+  7.82      1.48     0.14                             merge (mergesort-otimizado.c:28 @ 13f7)        
+  3.91      1.54     0.07                             merge (mergesort-otimizado.c:22 @ 1301)
+  2.79      1.59     0.05                             merge (mergesort-otimizado.c:25 @ 1316)
+  2.51      1.64     0.04                             insertionSort (mergesort-otimizado.c:53 @ 1547)
+  2.23      1.68     0.04                             merge (mergesort-otimizado.c:24 @ 1348)
+  1.96      1.72     0.04                             insertionSort (mergesort-otimizado.c:54 @ 1538)
+  1.68      1.75     0.03                             merge (mergesort-otimizado.c:31 @ 13c1)
+  1.40      1.77     0.03                             merge (mergesort-otimizado.c:34 @ 13ef)
+  0.56      1.78     0.01  1048575     9.54     9.54  mergeSort (mergesort-otimizado.c:60 @ 155c)
+  0.28      1.78     0.01                             merge (mergesort-otimizado.c:44 @ 1447)
+  0.28      1.79     0.01                             merge (mergesort-otimizado.c:45 @ 146f)
+  0.00      1.79     0.00   524288     0.00     0.00  insertionSort (mergesort-otimizado.c:51 @ 149a)
+  0.00      1.79     0.00   524287     0.00     0.00  merge (mergesort-otimizado.c:14 @ 1269)
