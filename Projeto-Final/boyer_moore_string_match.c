@@ -6,10 +6,8 @@
 #include <limits.h>
 
 # define TAMANHO_ALFABETO 256
+# define maior2(a, b) ((a) > (b) ? (a) : (b))
 
-int maior2(int a, int b) {
-	return (a > b)? a : b;
-}
 
 void ShiftTable(char *str, int tamanhoPadrao, int badchar[TAMANHO_ALFABETO])
 {
