@@ -1,8 +1,9 @@
-/* C Program for Bad Character Heuristic of Boyer
-   Moore String Matching Algorithm */
-
-# include <string.h>
-# include <stdio.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdbool.h>
+#include <math.h>
+#include <limits.h>
 
 # define TAMANHO_ALFABETO 256
 
@@ -49,10 +50,31 @@ void BoyerMooreStringMatch(char *txt, char *padrao)
     }
 }
 
-void main()
-{
-    char txt[] = "GCAATGCCTATGTGACC";
-    char padrao[] = "TATGTG";
-    BoyerMooreStringMatch(txt, padrao);
+int main() {
+    FILE *file = fopen("string.txt", "r");
+    if (file == NULL) {
+        fprintf(stderr, "Erro ao abrir o arquivo.\n");
+        return 1;
+    }
 
+    fseek(file, 0, SEEK_END);
+    long file_size = ftell(file);
+    rewind(file);
+
+    char *string = (char *)malloc((file_size + 1) * sizeof(char));
+    if (string == NULL) {
+        fprintf(stderr, "Erro de alocação de memória.\n");
+        fclose(file);
+        return 1;
+    }
+
+    fread(string, sizeof(char), file_size, file);
+    string[file_size] = '\0';  
+
+    BoyerMooreStringMatch(string, "ABCD");
+
+    free(string);
+    fclose(file);
+
+    return 0;
 }

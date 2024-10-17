@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
+#include <math.h>
+#include <limits.h>
 
 void patternSearching(char *string, char *pattern) {
     for (int i = 0; i < strlen(string); i++)
@@ -24,37 +27,29 @@ void patternSearching(char *string, char *pattern) {
     }
 }
 
-int main(int argc, char** argv){
-
+int main() {
     FILE *file = fopen("string.txt", "r");
-    char *string;
-    long file_size;
-
     if (file == NULL) {
         fprintf(stderr, "Erro ao abrir o arquivo.\n");
         return 1;
     }
 
-    // Movendo o cursor para o final do arquivo para determinar o tamanho
     fseek(file, 0, SEEK_END);
-    file_size = ftell(file);
+    long file_size = ftell(file);
     rewind(file);
 
-    // Alocando memória dinamicamente para armazenar a string
-    string = (char *)malloc((file_size + 1) * sizeof(char));  // +1 para o caractere null-terminador
+    char *string = (char *)malloc((file_size + 1) * sizeof(char));
     if (string == NULL) {
         fprintf(stderr, "Erro de alocação de memória.\n");
         fclose(file);
         return 1;
     }
 
-    // Lendo o conteúdo do arquivo no buffer
     fread(string, sizeof(char), file_size, file);
-    string[file_size] = '\0';  // Adicionando o null-terminador
+    string[file_size] = '\0';  
 
     patternSearching(string, "ABCD");
 
-    // Liberando a memória e fechando o arquivo
     free(string);
     fclose(file);
 
