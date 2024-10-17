@@ -48,7 +48,7 @@ int HorspoolMatching(char *padrao, char *texto)
 }
 
 int main() {
-    FILE *file = fopen("string.txt", "r");
+    FILE *file = fopen("string_grande.txt", "r");
     if (file == NULL) {
         fprintf(stderr, "Erro ao abrir o arquivo.\n");
         return 1;
@@ -68,7 +68,7 @@ int main() {
     fread(string, sizeof(char), file_size, file);
     string[file_size] = '\0';  
 
-    HorspoolMatching("ABCD", string);
+	printf("%d", HorspoolMatching("ABCD", string));
 
     free(string);
     fclose(file);

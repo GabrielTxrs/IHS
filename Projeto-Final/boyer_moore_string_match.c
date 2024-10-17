@@ -51,7 +51,7 @@ void BoyerMooreStringMatch(char *txt, char *padrao)
 }
 
 int main() {
-    FILE *file = fopen("string.txt", "r");
+    FILE *file = fopen("string_grande.txt", "r");
     if (file == NULL) {
         fprintf(stderr, "Erro ao abrir o arquivo.\n");
         return 1;
